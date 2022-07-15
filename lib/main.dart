@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'page_picture/picture.dart';
 
 void main() {
   runApp(MyApp());
@@ -158,6 +159,7 @@ class ImageGallery extends StatelessWidget {
         children: [
           
           Column(
+            
             children: imagesList.map((image) {
               return PictureCard(image);
             }).toList(),
@@ -176,25 +178,43 @@ class PictureCard extends StatelessWidget {
     return Container(
       height: 400,
       margin: EdgeInsets.only(top:6),
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        image: DecorationImage(
-          image: AssetImage(
-            imageData['picture']
-          ),
-          fit: BoxFit.cover,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            spreadRadius: 4,
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          )
-        ],
-      ),
+
       child: Stack(
         children: [
+
+          GestureDetector(
+
+            child: Container(
+
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  imageData['picture'],
+                ),
+                fit: BoxFit.cover,
+              ),
+
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  spreadRadius: 4,
+                  blurRadius: 6,
+                  offset: Offset(0, 3),
+                )
+              ],
+            ),
+            ),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Picture(),
+                ),
+              );
+            },
+          ),
+
+          
 
           Positioned(
             top: 10,
