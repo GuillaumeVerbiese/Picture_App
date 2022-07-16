@@ -44,7 +44,7 @@ class PictureCard extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => Picture(
                     imageData['picture'],
-                    imageData['profile'],
+                    imageData['profile_network'],
                     imageData['description'],
                     imageData['name'],
                     imageData['time'],
