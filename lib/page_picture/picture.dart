@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'appbar.dart';
 class Picture extends StatelessWidget {
   String picture;
   String profile;
@@ -11,7 +11,7 @@ class Picture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: MyAppBar(),
       body: Container(
       ),
     );
