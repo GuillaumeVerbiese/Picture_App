@@ -59,26 +59,29 @@ class Page extends StatelessWidget {
                       
                   children: <Widget>[
                     Flexible(
+                      flex: 3,
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Image.network(profile_network),
-                            width: 50,
-                            margin: EdgeInsets.only(left: 10, right: 5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(40)),
+                            margin: EdgeInsets.only(left: 10, right: 5, bottom: 40),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image.network(
+                                profile_network,
+                                width: 60,
+                              )
                             ),
                           )
                         ],
                       ),
                     ),
                     Flexible(
+                      flex: 7,
                       child: Column(
                         children: <Widget>[
                           Row(
                             children: [
                               Container(
-
                                 margin: EdgeInsets.only(bottom: 10, right: 3),
                                 child: Text(
                                   name, 
@@ -102,7 +105,7 @@ class Page extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            margin: EdgeInsets.only(bottom: 10),
+                            margin: EdgeInsets.only(bottom: 40),
                             child: Text(
                               description,
                               style: TextStyle(
