@@ -1,5 +1,7 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../page_picture/picture.dart';
 
@@ -60,7 +62,11 @@ class PictureCard extends StatelessWidget {
             top: 10,
             right: 5,
             child: IconButton(
-              onPressed: null, 
+              onPressed: () => showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => buildSheet(context),
+              ), 
               icon: Icon(
               Icons.more_vert,
               color: Colors.white,
@@ -68,7 +74,6 @@ class PictureCard extends StatelessWidget {
               ),
             ),
           ),
-
           Positioned(
             bottom: 20,
             left: 10,
@@ -118,7 +123,97 @@ class PictureCard extends StatelessWidget {
           ),
         ],
       ),
+      
     );
   }
+}
+  Widget buildSheet(context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Flexible(
+        flex: 10,
+        child: Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.05,
+          
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.7),
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))
+          ),
+          child: Text(
+          'que souhaitez-vous faire ?',
+          textAlign: TextAlign.center,
+          
+            style: TextStyle(
+              color: Color.fromARGB(255, 101, 101, 101).withOpacity(1),
+              fontSize: 14,
+              
+            ),
+          ),
+        ),
+        
+        
+      ),
 
-  }
+      Flexible(
+        flex: 10,
+        child: Container(
+          margin: EdgeInsets.only(bottom: 15),
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.05,
+          
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.7),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0))
+          ),
+          child: TextButton(
+            child: Text(
+              'Supprimer la publication',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 19,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            onPressed: null,
+            
+          ), 
+        ),
+        
+        
+      ),
+
+Flexible(
+        flex: 10,
+        child: Container(
+          margin: EdgeInsets.only(bottom: 15),
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.05,
+          
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          ),
+          child: SizedBox (
+            width: double.infinity,
+            child: TextButton(
+              child: Text(
+                'Annuler',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              onPressed: () => Navigator.of(context).pop(), 
+            ), 
+          )
+          
+        ),
+      ),
+    ],
+  );
