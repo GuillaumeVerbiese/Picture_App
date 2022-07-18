@@ -38,7 +38,11 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.white,
                 size: 22,
               ),
-              onPressed: null,
+              onPressed: () => showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => buildSheet(context),
+              ),
             ),
           ),
         )
@@ -47,3 +51,94 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
+Widget buildSheet(context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Flexible(
+        flex: 10,
+        child: Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.05,
+          
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.8),
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))
+          ),
+          child: Text(
+          'que souhaitez-vous faire ?',
+          textAlign: TextAlign.center,
+          
+            style: TextStyle(
+              color: Color.fromARGB(255, 101, 101, 101).withOpacity(1),
+              fontSize: 14,
+              
+            ),
+          ),
+        ),
+        
+        
+      ),
+
+      Flexible(
+        flex: 10,
+        child: Container(
+          margin: EdgeInsets.only(bottom: 15),
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.05,
+          
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.8),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0))
+          ),
+          child: TextButton(
+            child: Text(
+              'Supprimer la publication',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 19,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            onPressed: null,
+            
+          ), 
+        ),
+        
+        
+      ),
+
+Flexible(
+        flex: 10,
+        child: Container(
+          margin: EdgeInsets.only(bottom: 15),
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.05,
+          
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          ),
+          child: SizedBox (
+            width: double.infinity,
+            child: TextButton(
+              child: Text(
+                'Annuler',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              onPressed: () => Navigator.of(context).pop(), 
+            ), 
+          )
+          
+        ),
+      ),
+    ],
+  );
