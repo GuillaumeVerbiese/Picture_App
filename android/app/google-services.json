@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "766259926231",
+    "project_id": "picture-app-1129d",
+    "storage_bucket": "picture-app-1129d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766259926231:android:b99859cca4772f78114c92",
+        "android_client_info": {
+          "package_name": "com.example.kosmosapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766259926231-bd0rr876edccon7pu9njqeh1pgpsritj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvEmPrQrG1u1wJMw4d5Qe3z3VZfPNGFLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766259926231-bd0rr876edccon7pu9njqeh1pgpsritj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

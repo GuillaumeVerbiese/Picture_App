@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../Login/login.dart';
 
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -42,13 +43,25 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Padding(
           padding: EdgeInsets.all(6.0),
-          child: CircleAvatar(
+          child: GestureDetector(
+            child: CircleAvatar(
             radius: 18.0,
             backgroundImage: 
             NetworkImage('https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png'),
             backgroundColor: Colors.transparent,
-        )
-        )
+            ),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginWidget(
+                    
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
 
         // IconButton(
         //   onPressed: null, 
