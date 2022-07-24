@@ -3,12 +3,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Login/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+
   Size get preferredSize => new Size.fromHeight(50);
+  
   @override
   Widget build(BuildContext context) {
+        
+    final user = FirebaseAuth.instance.currentUser;
+    
+        
+        
     return AppBar(
       title: PreferredSize(
             preferredSize: Size.fromHeight(0.0),
@@ -20,13 +29,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   
-                    Text(
-                    'Bonjour, Anna 👋',
+                      Text(
+                        
+                      'Bonjour,  ${user?.email ?? 'toi'} 👋',
+                      
                     style: GoogleFonts.nunito(
                       color: Colors.grey[500],
-                      fontSize: 15,
+                      fontSize: 10,
                     ),        
                     ),
+
                     Text(
                     "Fil d'actualités",
                     style: GoogleFonts.nunito(
@@ -63,14 +75,22 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
 
-        // IconButton(
-        //   onPressed: null, 
-        //   icon: Icon(
-        //     Icons.account_circle,
-        //     color: Colors.black,
-        //     size: 35,
-        //   ),
-        // ),
+
+        Padding(
+          padding: EdgeInsets.all(2.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.logout,
+              color: Colors.black,
+              size: 35,
+            ),
+          onPressed: () => FirebaseAuth.instance.signOut(), 
+
+        ),
+        ),
+
+
+        
       ],
       
       
