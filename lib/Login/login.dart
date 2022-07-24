@@ -2,8 +2,29 @@
 
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'appbar.dart';
+import '../Homepage/homepage.dart';
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    appBar: MyAppBar(),
+    body: StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return HomePage();
+        } else {
+          return LoginWidget();
+        }
+      },
+    ),
+
+    );
+
+}
 
 
 class LoginWidget extends StatefulWidget {
@@ -27,9 +48,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
 
-  Widget build(BuildContext context) => Scaffold(
-    appBar: MyAppBar(),
-    body:SingleChildScrollView(
+  Widget build(BuildContext context) => SingleChildScrollView(
     padding: EdgeInsets.all(16),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +90,17 @@ class _LoginWidgetState extends State<LoginWidget> {
             decoration: InputDecoration(labelText: 'Saisissez votre Email'),
           ),
         ),
-        Text('Password'),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: EdgeInsets.only(top: 25),
+            child: Text(
+              'Password',
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
         SizedBox(height: 4),
         Material(
           child: TextField(
@@ -92,11 +121,19 @@ class _LoginWidgetState extends State<LoginWidget> {
             'Connexion',
             style: TextStyle(fontSize: 24),
           ),
-          onPressed:() {},
+          onPressed:signIn,
         ),
       ],
     ),
-  ),
-);
+  );
+
+Future signIn() async {
+  await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: emailController.text.trim(),
+    password:passwordController.text.trim(),
+  );
+}
+
   
 }
+
