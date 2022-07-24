@@ -55,14 +55,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Padding(
           padding: EdgeInsets.all(6.0),
-          child: GestureDetector(
-            child: CircleAvatar(
-            radius: 18.0,
-            backgroundImage: 
-            NetworkImage('https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png'),
-            backgroundColor: Colors.transparent,
-            ),
-            onTap: (){
+          child: IconButton(
+            icon: Icon(
+              
+              Icons.account_box_rounded,
+              color: Colors.black,
+              ),
+          onPressed: (){
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -73,6 +72,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               );
             },
           ),
+          // child: GestureDetector(
+          //   child: CircleAvatar(
+          //   radius: 18.0,
+          //   backgroundImage: 
+          //   NetworkImage('https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png'),
+          //   backgroundColor: Colors.transparent,
+          //   ),
+            
+          // ),
         ),
 
 
