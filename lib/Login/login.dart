@@ -4,6 +4,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kosmosapp/Login/Account/create.dart';
 import 'appbar.dart';
 import '../Homepage/homepage.dart';
 
@@ -88,7 +89,13 @@ class _LoginWidgetState extends State<LoginWidget> {
             controller: emailController,
             cursorColor: Colors.white,
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(labelText: 'Saisissez votre Email'),
+            decoration: InputDecoration(
+              labelText: 'Saisissez votre Email',
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+              ),
+              obscureText: true,
           ),
         ),
 
@@ -107,7 +114,12 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: TextField(
             controller: passwordController,
             textInputAction: TextInputAction.done,
-            decoration: InputDecoration(labelText: 'Password'),
+            decoration: InputDecoration(
+              labelText: 'Password',
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+              ),
             obscureText: true,
           ),
         ),
@@ -117,11 +129,14 @@ class _LoginWidgetState extends State<LoginWidget> {
           style: ElevatedButton.styleFrom(
             primary: Colors.black,
             minimumSize: Size.fromHeight(50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
           ),
-          icon: Icon(Icons.lock_open, size: 32),
+          icon: Icon(Icons.lock_open, size: 16),
           label: Text(
             'Connexion',
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 16),
           ),
           onPressed:signIn,
         ),
@@ -137,6 +152,33 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
                 child: Text(
                   'Réinitialiser',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+              )
+          ],
+          
+        ),
+
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Nouveau ?'),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreatePage(),
+                ),
+              );
+              },
+                child: Text(
+                  'Créé un compte',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
@@ -221,7 +263,7 @@ Widget buildSheet(context) => Container(
           Container(
             
             width: MediaQuery.of(context).size.width * 0.9,
-            margin: EdgeInsets.only(top: 45),
+            margin: EdgeInsets.only(top: 15),
 
             child: Text(
               'email',
@@ -258,11 +300,15 @@ Widget buildSheet(context) => Container(
           child: ElevatedButton(
             child: Text(
             'Réinitialiser',
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 16),
             ),
           style: ElevatedButton.styleFrom(
             primary: Colors.black,
-            minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50)),
+            minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            ),
             
           
           onPressed:() {
@@ -271,6 +317,8 @@ Widget buildSheet(context) => Container(
           },
         ) ,
         ),
+        
+
         
         
     ],
