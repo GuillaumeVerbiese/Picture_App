@@ -2,6 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kosmosapp/Homepage/homepage.dart';
+import 'package:kosmosapp/Login/Account/profil.dart';
 import '../../Login/appbar.dart';
 
 class CreatePage extends StatelessWidget {
@@ -155,6 +157,29 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             
           
           onPressed:() {
+            if (passwordController.text == verifyPasswordController.text ) {
+              createUser();
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(
+                    
+                  ),
+                ),
+              );
+
+            } else {
+              showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => buildSheet(context),
+                constraints: BoxConstraints(
+                  minWidth: 450,
+                  maxWidth: 500,              
+                ),
+              );
+            }
             
           },
         ) ,
@@ -162,4 +187,84 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ],
     ),
   );
+
+Future createUser() async {
+  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: emailController.text.trim(),
+    password:passwordController.text.trim(),
+  );
+}
+
+Widget buildSheet(context) => Center(
+  child: Container(
+    padding: EdgeInsets.all(10),
+  width: MediaQuery.of(context).size.width * 0.5,
+  
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.all(
+                Radius.circular(40),
+              ),
+  ),
+  
+  child: Column(
+    
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      
+      children: [
+         Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: 40),
+            width: MediaQuery.of(context).size.width * 0.9,
+          
+            decoration: BoxDecoration(
+              color: Colors.white,
+              
+            ),
+            child: Text(
+            'Les mots de passes ne sont pas identiques veuillez réessayer la saisie des informations',
+          textAlign: TextAlign.center,
+          
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              
+            ),
+          ),
+        ),
+      
+        SizedBox(height: 40),
+        Container(
+          margin: EdgeInsets.only(bottom: 25, top: 15),
+          child: ElevatedButton(
+            child: Text(
+            'Fermer',
+            style: TextStyle(fontSize: 16),
+            ),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.black,
+            minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            ),
+            
+          
+          onPressed:() {
+            Navigator.of(context).pop();
+          },
+        ) ,
+        ),
+        
+
+        
+        
+    ],
+  ),
+
+  ),
+ );
+
 }
